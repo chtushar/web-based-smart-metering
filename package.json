@@ -1,0 +1,25 @@
+{
+  "name": "web-based-smart-metering",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:chtushar/web-based-smart-metering.git",
+  "author": "Tushar Choudhari <choudharit23@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "helmet": "^4.2.0",
+    "monk": "^7.3.2",
+    "morgan": "^1.10.0",
+    "nanoid": "^3.1.17",
+    "yup": "^0.30.0"
+  },
+  "devDependencies": {
+    "dotenv": "^8.2.0",
+    "nodemon": "^2.0.6"
+  }
+}
