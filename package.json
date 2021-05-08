@@ -10,12 +10,14 @@
     "dev": "nodemon index.js"
   },
   "dependencies": {
+    "@socket.io/admin-ui": "^0.1.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "helmet": "^4.2.0",
     "monk": "^7.3.2",
     "morgan": "^1.10.0",
     "nanoid": "^3.1.17",
+    "socket.io": "^4.0.2",
     "yup": "^0.30.0"
   },
   "devDependencies": {

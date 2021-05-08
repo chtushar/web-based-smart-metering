@@ -4,6 +4,7 @@ const db = require('../db/setup');
 const router = new express.Router();
 
 const points = db.get('points');
+const { io } = require('../index');
 
 router.post('/board/:id', async (req, res) => {
   const { id: board } = req.params;
@@ -15,7 +16,6 @@ router.post('/board/:id', async (req, res) => {
   };
 
   const { createdAt } = await points.insert(newPoint);
-
   return res.json({ createdAt });
 });
 
