@@ -41,7 +41,7 @@ app.use(express.json());
 
 app.use(express.static(PUBLIC_PATH));
 
-app.use('/api', api);
+// app.use('/api', api);
 
 io.on('connection', async (socket) => {
   socket.on('join', async (boardName) => {
@@ -73,5 +73,3 @@ io.on('connection', async (socket) => {
 server.listen(PORT, () => {
   console.log(`Listening at http://localhost:${PORT}`);
 });
-
-module.exports = { io };
