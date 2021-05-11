@@ -7,7 +7,8 @@
   "license": "MIT",
   "scripts": {
     "start": "node index.js",
-    "dev": "nodemon index.js"
+    "dev": "nodemon index.js",
+    "build": "yarn install"
   },
   "dependencies": {
     "@socket.io/admin-ui": "^0.1.0",
