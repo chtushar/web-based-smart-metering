@@ -28,7 +28,7 @@ instrument(io, {
 });
 
 const PORT = process.env.PORT || 8888;
-const PUBLIC_PATH = path.join(__dirname, 'client');
+const PUBLIC_PATH = path.join(__dirname, 'public');
 
 const boards = db.get('boards');
 const points = db.get('points');

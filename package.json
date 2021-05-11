@@ -6,7 +6,7 @@
   "author": "Tushar Choudhari <choudharit23@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "node index.js",
+    "start": "node index.js -p $PORT",
     "dev": "nodemon index.js",
     "build": "yarn install"
   },
