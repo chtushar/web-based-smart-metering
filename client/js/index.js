@@ -89,16 +89,17 @@ function createChart() {
   ////////////////////////////////////////////////////////////////////////
 
   // Graph ///////////////////////////////////////////////////////////////
-  let linearScale = d3.scaleLinear().domain([0, yMax]).range([0, graphHeight]);
-  let scaledEnergyValues = energyValues.map((d) => linearScale(d));
+  let linearScaleY = d3.scaleLinear().domain([0, yMax]).range([0, graphHeight]);
+  let scaledEnergyValues = energyValues.map((d) => linearScaleY(d));
+  let linearScaleX = d3.tim;
   let barWidth = graphWidth / scaledEnergyValues.length;
 
   graph
-    .selectAll('rect')
+    .selectAll('circle')
     .data(scaledEnergyValues)
     .enter()
-    .append('rect')
-    .attr('class', 'bar')
+    .append('circle')
+    .attr('r', 5)
     .attr('data-date', function (d, i) {
       return dates[i];
     })
@@ -106,12 +107,6 @@ function createChart() {
       return energyValues[i];
     })
     .style('fill', 'green')
-    .attr('width', barWidth)
-    .attr('height', (d) => d)
-    .attr('x', (d, i) => {
-      return barWidth * i;
-    })
-    .attr('y', (d) => {
-      return graphHeight - d;
-    });
+    .attr('cy', (d, i) => scaledEnergyValues[i])
+    .attr('cx', (d, i) => xScale(dates[i]));
 }
