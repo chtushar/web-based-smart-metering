@@ -41,7 +41,7 @@ app.use(express.json());
 
 app.use(express.static(PUBLIC_PATH));
 
-// app.use('/api', api);
+app.use('/api', api);
 
 io.on('connection', async (socket) => {
   socket.on('join', async (boardName) => {
