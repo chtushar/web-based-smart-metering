@@ -2,7 +2,7 @@ const socket = io();
 let data = [];
 
 // Socket
-socket.emit('join', 'tushar', (error) => {
+socket.emit('join', 'test-3', (error) => {
   if (error) {
     alert(error);
   }
@@ -17,6 +17,10 @@ socket.on('allData', (allPoints) => {
       value: totalConsumption,
     };
   });
+
+  // data.map((d) => {
+  //   console.log(new Date(d.createdAt));
+  // });
 
   createChart();
 });
@@ -89,10 +93,19 @@ function createChart() {
   ////////////////////////////////////////////////////////////////////////
 
   // Graph ///////////////////////////////////////////////////////////////
-  let linearScaleY = d3.scaleLinear().domain([0, yMax]).range([0, graphHeight]);
-  let scaledEnergyValues = energyValues.map((d) => linearScaleY(d));
-  let linearScaleX = d3.tim;
-  let barWidth = graphWidth / scaledEnergyValues.length;
+  let linearScaleY = d3.scaleLinear().domain([0, yMax]).range([graphHeight, 0]);
+  let scaledEnergyValues = energyValues.map((d) => yScale(d));
+
+  let line = d3
+    .line()
+    .x(function (d, i) {
+      const x = d3.scaleTime().domain([xMin, xMax]).range([0, graphWidth]);
+      return x(dates[i]);
+    }) // set the x values for the line generator
+    .y(function (d, i) {
+      return scaledEnergyValues[i];
+    }) // set the y values for the line generator
+    .curve(d3.curveMonotoneX);
 
   graph
     .selectAll('circle')
@@ -109,4 +122,12 @@ function createChart() {
     .style('fill', 'green')
     .attr('cy', (d, i) => scaledEnergyValues[i])
     .attr('cx', (d, i) => xScale(dates[i]));
+
+  graph
+    .append('path')
+    .datum(scaledEnergyValues)
+    .attr('class', 'line')
+    .attr('d', line)
+    .attr('fill', 'none')
+    .attr('stroke', '#000');
 }
